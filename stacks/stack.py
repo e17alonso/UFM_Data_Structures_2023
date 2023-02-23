@@ -12,15 +12,17 @@ class Stack:
     '''
 
     def __init__(self, size: int):
+
+        self.MAX=size
         self.elements = [None] * size
         self.top = -1
-
+        
     
     def __repr__(self):
         return 'Current stack: {} | Top: {}'.format(self.elements, self.top)
 
 
-    def push(self, value: str) -> None:
+    def push(self, value: int) -> None:
         '''
         Pushes element into the stack.
 
@@ -34,14 +36,14 @@ class Stack:
             None
         '''
 
-        if self.top == len(self.elements) - 1:
-            raise Exception('Stack overflow')
+        if self.top == self.MAX-1:
+            print('Stack overflow')
+        else:
+            self.top += 1
+            self.elements[self.top] = value
 
-        self.top += 1
-        self.elements[self.top] = value
 
-
-    def pop(self) -> str:
+    def pop(self) -> int:
         '''
         Pops element out of stack.
         
@@ -56,7 +58,7 @@ class Stack:
         '''
 
         if self.top == -1:
-            raise Exception('Stack underflow')
+            print('Stack underflow')
         
         value = self.elements[self.top]
         self.elements[self.top] = None # (Optional)
@@ -64,7 +66,7 @@ class Stack:
         return value
 
 
-    def peek(self) -> str:
+    def peek(self) -> int:
         '''
         Peeks topmost element.
 
@@ -79,3 +81,11 @@ class Stack:
         
         value = self.elements[self.top]
         return value
+    
+    def search(self, key: int) -> None:
+        for i in self.elements:
+            if key == self.elements[i]:
+                return 'Key has been found'
+        return 'Key has not been found'
+    
+
